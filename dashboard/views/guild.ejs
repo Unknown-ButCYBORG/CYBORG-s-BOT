@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Manage <%= guild.name %> | CYBORGBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+
+  <%- include('partials/header') %>
+
+  <div class="flex">
+    <%- include('partials/sidebar') %>
+
+    <main class="flex-1 px-6 py-8">
+      <h1 class="text-2xl font-bold mb-4">Managing: <%= guild.name %></h1>
+      <p class="text-gray-400 mb-6">Use the sidebar to manage systems like welcome messages, mod logs, and more.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="/dashboard/<%= guild.id %>/welcome" class="block p-5 bg-gray-800 rounded-lg hover:bg-gray-700 transition shadow">
+          <h2 class="text-xl font-semibold mb-2">🎉 Welcome System</h2>
+          <p class="text-sm text-gray-300">Send welcome messages when new members join.</p>
+        </a>
+
+        <a href="/dashboard/<%= guild.id %>/modlog" class="block p-5 bg-gray-800 rounded-lg hover:bg-gray-700 transition shadow">
+          <h2 class="text-xl font-semibold mb-2">📋 Mod Log</h2>
+          <p class="text-sm text-gray-300">Log bans, kicks, and other mod actions.</p>
+        </a>
+        <a href="/dashboard/<%= guild.id %>/autorole" class="block p-5 bg-gray-800 rounded-lg hover:bg-gray-700 transition shadow">
+          <h2 class="text-xl font-semibold mb-2">🤖 AutoRole</h2>
+          <p class="text-sm text-gray-300">AutoRole when a member joins the server</p>
+        </a>
+        <a href="/dashboard/<%= guild.id %>/prefix" class="block p-5 bg-gray-800 rounded-lg hover:bg-gray-700 transition shadow">
+          <h2 class="text-xl font-semibold mb-2">✏️ Prefix Manager</h2>
+          <p class="text-sm text-gray-300">Change the guild prefix</p>
+        </a>
+        <a href="/dashboard/<%= guild.id %>/verify" class="block p-5 bg-gray-800 rounded-lg hover:bg-gray-700 transition shadow">
+          <h2 class="text-xl font-semibold mb-2">✅ Verify System</h2>
+          <p class="text-sm text-gray-300">Verify System to prevent bots and fake accounts to join</p>
+        </a><a href="/dashboard/<%= guild.id %>/buttonroles" class="block p-5 bg-gray-800 rounded-lg hover:bg-gray-700 transition shadow">
+          <h2 class="text-xl font-semibold mb-2">🔘 ButtonRoles System</h2>
+          <p class="text-sm text-gray-300">Let your members assign themselves roles by clicking interactive buttons</p>
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <%- include('partials/footer') %>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Verification System | <%= guild.name %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+
+  <%- include('../partials/header') %>
+
+  <div class="flex">
+    <%- include('../partials/sidebar') %>
+
+    <main class="flex-1 p-8">
+      <h1 class="text-2xl font-bold mb-6">🛡️ Verification System</h1>
+
+      <form action="/dashboard/<%= guild.id %>/verify" method="POST" class="space-y-6 bg-gray-800 p-6 rounded-lg shadow">
+
+
+        <div>
+          <label class="flex items-center space-x-3">
+            <input type="checkbox" name="verification_enabled" class="w-5 h-5" <% if (settings.verification?.enabled) { %> checked <% } %> />
+            <span>Enable Verification System</span>
+          </label>
+        </div>
+
+
+        <div>
+          <label class="block mb-1">Verification Channel</label>
+          <select name="verification_channel" class="w-full bg-gray-700 rounded px-4 py-2 text-white">
+            <% textChannels.forEach(channel => { %>
+            <option value="<%= channel.id %>" <% if (settings.verification?.channel === channel.id) { %> selected <% } %>>
+              #<%= channel.name %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
+
+
+        <div>
+          <label class="block mb-1">Role to Assign on Verification</label>
+          <select name="verification_role" class="w-full bg-gray-700 rounded px-4 py-2 text-white">
+            <% roles.forEach(role => { %>
+            <option value="<%= role.id %>" <% if (settings.verification?.role === role.id) { %> selected <% } %>>
+              <%= role.name %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
+
+
+        <div>
+          <label class="block mb-1">Verification Message</label>
+          <textarea name="verification_message" rows="3" class="w-full bg-gray-700 rounded px-4 py-2 text-white"><%= settings.verification?.message || '' %></textarea>
+          <p class="text-sm text-gray-400 mt-1">This message will be shown above the verify button in the selected channel.</p>
+        </div>
+
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-semibold">
+          💾 Save Settings
+        </button>
+      </form>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+</body>
+
+</html>

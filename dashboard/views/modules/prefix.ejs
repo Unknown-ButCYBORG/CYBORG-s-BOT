@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Prefix Manager | <%= guild.name %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+
+  <%- include('../partials/header') %>
+
+  <div class="flex">
+    <%- include('../partials/sidebar') %>
+
+    <main class="flex-1 p-8">
+      <h1 class="text-2xl font-bold mb-4">✏️ Prefix Manager</h1>
+
+      <form action="/dashboard/<%= guild.id %>/prefix" method="POST" class="space-y-6">
+
+
+        <div>
+          <label for="prefix" class="block mb-1">Custom Bot Prefix</label>
+          <input type="text" name="prefix" id="prefix" maxlength="5" value="<%= settings.prefix || '!' %>" class="w-full bg-gray-800 rounded px-4 py-2 text-white border border-gray-700 focus:outline-none" placeholder="!" />
+          <p class="text-sm text-gray-400 mt-1">Default is <code>!</code>. Max 5 characters.</p>
+        </div>
+
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-semibold">
+          Save Prefix
+        </button>
+      </form>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+</body>
+
+</html>

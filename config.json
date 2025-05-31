@@ -1,0 +1,10 @@
+{
+  "token": "",  
+  "prefix": "!",
+  "clientId": "",
+  "clientSecret": "",  
+  "callbackURL":  "http://localhost:3000/callback",  
+  "guildId": "",
+  "mongoDbURL": "",
+  "port": "4500"
+}

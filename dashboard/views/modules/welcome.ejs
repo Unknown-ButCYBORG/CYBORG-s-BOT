@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome System | <%= guild.name %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen font-sans">
+
+  <%- include('../partials/header') %>
+
+  <div class="flex">
+    <%- include('../partials/sidebar') %>
+
+    <main class="flex-1 p-8">
+      <h1 class="text-2xl font-bold mb-4">🎉 Welcome System</h1>
+
+      <form action="/dashboard/<%= guild.id %>/welcome" method="POST" class="space-y-6">
+
+
+        <div>
+          <label class="flex items-center space-x-3">
+            <input type="checkbox" name="welcome_enabled" class="w-5 h-5" <% if (settings.welcome?.enabled) { %> checked <% } %> />
+            <span>Enable Welcome System</span>
+          </label>
+        </div>
+
+
+        <div>
+          <label class="block mb-1">Welcome Channel</label>
+          <select name="welcome_channel" class="w-full bg-gray-800 rounded px-4 py-2 text-white">
+            <% textChannels.forEach(channel => { %>
+            <option value="<%= channel.id %>" <% if (settings.welcome?.channel === channel.id) { %> selected <% } %>>
+              #<%= channel.name %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
+
+
+        <div>
+          <label class="block mb-1">Welcome Message</label>
+          <textarea name="welcome_message" rows="4" class="w-full bg-gray-800 rounded px-4 py-2 text-white" placeholder="Welcome to the server, {user}!"><%= settings.welcome?.message || '' %></textarea>
+          <p class="text-sm text-gray-400 mt-1">Use <code>{user}</code> to mention the joining member.</p>
+        </div>
+
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-semibold">
+          Save Settings
+        </button>
+      </form>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+</body>
+
+</html>

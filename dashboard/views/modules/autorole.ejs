@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Auto Role | <%= guild.name %>
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+
+  <%- include('../partials/header') %>
+
+  <div class="flex">
+    <%- include('../partials/sidebar') %>
+
+    <main class="flex-1 p-8">
+      <h1 class="text-2xl font-bold mb-4">🤖 Auto Role System</h1>
+
+      <form action="/dashboard/<%= guild.id %>/autorole" method="POST" class="space-y-6">
+
+
+        <div>
+          <label class="flex items-center space-x-3">
+            <input type="checkbox" name="autorole_enabled" class="w-5 h-5" <% if (settings.autorole?.enabled) { %> checked <% } %> />
+            <span>Enable Auto Role</span>
+          </label>
+        </div>
+
+
+        <div>
+          <label class="block mb-1">Select Role to Auto-Assign</label>
+          <select name="autorole_role" class="w-full bg-gray-800 rounded px-4 py-2 text-white">
+            <% roles.forEach(role=> { %>
+            <option value="<%= role.id %>" <% if (settings.autorole?.role===role.id) { %> selected <% } %>>
+              <%= role.name %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
+
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded font-semibold">
+          Save Settings
+        </button>
+      </form>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+</body>
+
+</html>
